@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../database')
 
 const User = db.define("user", {
   username: {
@@ -9,9 +9,9 @@ const User = db.define("user", {
     allowNull: false,
     validate: {
       notEmpty: true,
-      notNull: {
-        msg: "Please choose a user name",
-      },
+      // notNull: {
+      //   msg: "Please choose a user name",
+      // },
     },
   },
   imageUrl:{
