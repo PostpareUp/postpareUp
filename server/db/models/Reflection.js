@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../database');
+const moment = require('moment')
 
 module.exports = db.define('reflection', {
   companyName: {
@@ -12,16 +13,16 @@ module.exports = db.define('reflection', {
   },
   reflection: {
     type: Sequelize.STRING,
-    defaultValue:''
+    defaultValue: ''
   },
-  note:{
+  note: {
     type: Sequelize.TEXT,
     defaultValue: ''
   },
-  date: {
+  date: {  //do we need this?
     type: Sequelize.DATE,
     get() {
-      return moment(this.getDataValue('date')).format('DD/MM/YYYY h:mm:ss');
+      return moment(this.getDataValue('date')).format('DD/MM/YYYY h:mm:ss'); //moment.js?
   }
   }
 });
