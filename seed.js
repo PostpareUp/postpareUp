@@ -28,23 +28,23 @@ const users = [{
 const reflections = [
   {
     userId: 1,
-    companyName: "BBC",
-    interviewStage: "technical interview",
+    companyName: 'BBC',
+    interviewStage: 'technical interview',
   },
   {
     userId: 1,
-    companyName: "bbc",
-    interviewStage: "technical interview",
+    companyName: 'bbc',
+    interviewStage: 'technical interview',
   },
   {
     userId: 2,
-    companyName: "ada",
-    interviewStage: "technical interview",
+    companyName: 'ada',
+    interviewStage: 'technical interview',
   },
   {
     userId: 3,
-    companyName: "bzz",
-    interviewStage: "technical interview",
+    companyName: 'bzz',
+    interviewStage: 'technical interview',
   },
 ];
 
