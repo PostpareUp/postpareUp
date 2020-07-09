@@ -8,7 +8,7 @@ module.exports = db.define('reflection', {
     defaultValue: ''
   },
   interviewStage: {
-    type: Sequelize.ENUM({  values: ['online application','initial phone screen', 'technical interview', 'on site', 'other']})
+    type: Sequelize.ENUM(['online application', 'initial phone screen', 'technical interview', 'on site', 'other'])
 
   },
   reflection: {
@@ -19,10 +19,10 @@ module.exports = db.define('reflection', {
     type: Sequelize.TEXT,
     defaultValue: ''
   },
-  date: {  //do we need this?
+  date: {  //do we need this? check again when component is done
     type: Sequelize.DATE,
-    get() {
-      return moment(this.getDataValue('date')).format('DD/MM/YYYY h:mm:ss'); //moment.js?
-  }
+    // get() {
+    //   return moment(this.getDataValue('date')).format('DD/MM/YYYY h:mm:ss'); //moment.js?
+  // }
   }
 });
