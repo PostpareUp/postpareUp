@@ -52,9 +52,11 @@ const seed = async () => {
   try {
     await db.sync({force: true})
 
-    await Promise.all(users.map(user => {
-      return User.create(user);
-    }));
+    await Promise.all(
+      users.map(user => {
+        return User.create(user);
+      })
+    );
 
     await Promise.all(
       reflections.map((reflection) => {
