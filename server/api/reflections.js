@@ -67,7 +67,6 @@ router.put('/:id', async (req, res, next) => {
     });
     res.send('update successful')
 //redirect from front end to single reflection or all user's reflections?
-
   } catch (err) {
     next(err)
   }

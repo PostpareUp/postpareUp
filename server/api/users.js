@@ -1,7 +1,7 @@
 "use strict";
 
 const User = require("../db/models/User");
-const Reflection = require ('../db/models/Reflection')
+const Reflection = require('../db/models/Reflection');
 const router = require("express").Router();
 
 router.get("/", async (req, res, next) => {
@@ -55,9 +55,20 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const userToBeDeleted = await User.findById(req.params.id) 
-    await userToBeDeleted.destroy();
-    res.send("user has been deleted");
+    //delete reflection first so we don't lose userId reference
+    await Reflection.destroy({
+      where: {
+        userId: req.params.id,
+      },
+    });
+    await User.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+
+    res.send("Your account and your reflections has been deleted");
   } catch (err) {
     next(err);
   }
