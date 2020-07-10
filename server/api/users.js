@@ -55,15 +55,12 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    //delete reflection first so we don't lose userId reference
-    await Reflection.destroy({
-      where: {
-        userId: req.params.id,
-      },
-    });
     await User.destroy({
       where: {
         id: req.params.id
+      },
+      includes: {
+        model: Reflection
       }
     });
 
