@@ -3,6 +3,7 @@
 const Reflection = require('../db/models/Reflection');
 const router = require('express').Router();
 
+//get all reflections
 router.get('/', async (req, res, next) => {
   try {
     const reflections = await Reflection.findAll();
@@ -12,6 +13,21 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+//get all reflections from one user
+router.get('/user/:userId', async (req, res, next) => {
+  try {
+    const reflections = await Reflection.findAll({
+      where: {
+        userId: req.params.userId,
+      }
+    });
+    res.json(reflections);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//get single reflection
 router.get('/:id', async (req, res, next) => {
   try {
     const reflection = await Reflection.findById(req.params.id);
@@ -21,6 +37,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+//create a new reflection
 router.post('/create', async (req, res, next) => {
   try {
     const {companyName, interviewStage, reflection, note} = req.body;
@@ -36,6 +53,7 @@ router.post('/create', async (req, res, next) => {
   }
 })
 
+//update a reflection
 router.put('/:id', async (req, res, next) => {
   try {
     const { companyName, interviewStage, reflection, note } = req.body;
@@ -48,7 +66,7 @@ router.put('/:id', async (req, res, next) => {
       note
     });
     res.send('update successful')
-//redirect from front end?
+//redirect from front end to single reflection or all user's reflections?
 
   } catch (err) {
     next(err)
