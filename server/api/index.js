@@ -2,7 +2,7 @@
 
 const router = require('express').Router()
 
-// router.use('/candies', require('./candies'));
+router.use('/users', require('./users'));
 
 router.use('/reflections', require('./reflections'));
 
