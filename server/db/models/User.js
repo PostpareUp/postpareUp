@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../database')
 
 const User = db.define("user", {
   username: {
@@ -9,14 +9,11 @@ const User = db.define("user", {
     allowNull: false,
     validate: {
       notEmpty: true,
-      notNull: {
-        msg: "Please choose a user name",
-      },
-    },
+    }
   },
-  imageUrl:{
-    type:Sequelize.STRING,
-    defaultValue: "http://4.bp.blogspot.com/-jj13PvJtPqY/Totq30ND_KI/AAAAAAAABHI/ZnUWkQKO22Q/s1600/batman-for-facebook.jpg"
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'http://4.bp.blogspot.com/-jj13PvJtPqY/Totq30ND_KI/AAAAAAAABHI/ZnUWkQKO22Q/s1600/batman-for-facebook.jpg'
   },
   email: {
     type: Sequelize.STRING,
@@ -32,7 +29,7 @@ const User = db.define("user", {
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
-      return () => this.getDataValue("password");
+      return () => this.getDataValue('password');
     },
   },
   salt: {
@@ -40,7 +37,7 @@ const User = db.define("user", {
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
-      return () => this.getDataValue("salt");
+      return () => this.getDataValue('salt');
     },
   },
   googleId: {
@@ -78,7 +75,7 @@ User.encryptPassword = function(plainText, salt) {
 
 //classMethod for increasing Rejection counts
 User.increaseRejection = function(){
-  return user.numbOfRejection ++;
+  return this.numbOfRejection++;
 }
 
 

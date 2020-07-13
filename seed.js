@@ -1,34 +1,68 @@
 const {db} = require('./server/db')
 const {green, red} = require('chalk')
 
-const Candy = require('./server/db/models/Candy');
-
+const User = require('./server/db/models/User');
+const Reflection = require('./server/db/models/Reflection')
 // here's some sample candies to get you started
 // feel free to edit these or add your own!
-const candies = [{
-  name: 'Skittles',
-  description: 'Taste the rainbow',
-  quantity: 2,
-  imageUrl: 'https://target.scene7.com/is/image/Target/GUEST_3d2a8073-36e6-4cec-8c8c-872639105820?wid=488&hei=488&fmt=pjpeg'
-}, {
-  name: 'KitKat',
-  description: 'Make the most of your break',
-  quantity: 5,
-  imageUrl: 'https://target.scene7.com/is/image/Target/GUEST_9766bfa7-3fcb-4f4c-9576-15e17ccc1044?wid=488&hei=488&fmt=pjpeg'
-}, {
-  name: 'M&M',
-  description: 'Melts in your mouth, not in your hand',
-  quantity: 4,
-  imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg'
-}];
+const users = [{
+  username: 'Rusty',
+  email: 'rusty@gmail.com',
+  password: '123',
+  numbOfRejection: 2
+},
+{
+  username: 'Adam',
+  email: 'adam@gmail.com',
+  password: '123',
+  numbOfRejection: 5
+},
+{
+  username: 'CrunchyBob',
+  email: 'crunchybob@gmail.com',
+  password: '123',
+  numbOfRejection: 10
+}
+];
+
+const reflections = [
+  {
+    userId: 1,
+    companyName: 'BBC',
+    interviewStage: 'technical interview',
+  },
+  {
+    userId: 1,
+    companyName: 'bbc',
+    interviewStage: 'technical interview',
+  },
+  {
+    userId: 2,
+    companyName: 'ada',
+    interviewStage: 'technical interview',
+  },
+  {
+    userId: 3,
+    companyName: 'bzz',
+    interviewStage: 'technical interview',
+  },
+];
 
 const seed = async () => {
   try {
     await db.sync({force: true})
 
-    await Promise.all(candies.map(candy => {
-      return Candy.create(candy);
-    }));
+    await Promise.all(
+      users.map(user => {
+        return User.create(user);
+      })
+    );
+
+    await Promise.all(
+      reflections.map((reflection) => {
+        return Reflection.create(reflection);
+      })
+    );
 
     console.log(green('Seeding success!'))
     db.close()
