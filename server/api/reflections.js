@@ -58,14 +58,14 @@ router.put('/:id', async (req, res, next) => {
   try {
     const { companyName, interviewStage, reflection, note } = req.body;
 
-    const foundReflection = await Reflection.findById(req.params.id)
-    await foundReflection.update({
+    let foundReflection = await Reflection.findById(req.params.id)
+    foundReflection = await foundReflection.update({
       companyName,
       interviewStage,
       reflection,
       note
     });
-    res.send('update successful')
+    res.json(foundReflection)
 //redirect from front end to single reflection or all user's reflections?
   } catch (err) {
     next(err)

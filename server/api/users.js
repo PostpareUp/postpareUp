@@ -40,14 +40,14 @@ router.post("/signup", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const { username, imageUrl, email, password } = req.body;
-    const foundUser = await User.findById(req.params.id);
-    await foundUser.update({
+    let foundUser = await User.findById(req.params.id);
+    foundUser = await foundUser.update({
       username,
       imageUrl,
       email,
       password,
     });
-    res.send("update successful");
+    res.json(foundUser);
   } catch (err) {
     next(err);
   }
