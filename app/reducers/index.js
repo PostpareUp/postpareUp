@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
-import userReducer from "./user";
-import reflectionReducer from "./reflection";
+import user from "./user";
+import users from "./users";
+import reflection from "./reflection";
+import reflections from "./reflections";
 
 export default appReducer = combineReducers({
-  users: userReducer,
-  reflections: reflectionReducer
+  users,
+  user,
+  reflections,
+  reflection
 })

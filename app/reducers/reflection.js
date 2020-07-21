@@ -28,10 +28,6 @@ export const fetchUpdateReflection = (id, reflectionToUpdate) => async (dispatch
 }
 
 //REDUCER
-{note: 'something'}
-{
-  note: "something else";
-}
 
 export default function(state = {}, action){
   switch(action.type) {

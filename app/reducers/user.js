@@ -34,22 +34,14 @@ export const fetchUpdateUser = (id, userToUpdate) => async (dispatch) => {
   dispatch(updateUser(data));
 }
 
-export const fetchDeleteUser = (id) => async (dispatch) => {
-  const {data} = await axios.delete(`/api/users/${id}`);
-  dispatch(deleteUser(data));
-}
-
-
 // REDUCER
 
 export default function (state = {}, action){
   switch (action.type) {
     case GET_SINGLE_USER:
-      return {...state, singleUser: action.user};
+      return {... action.user};
     case UPDATE_USER:
-      return {...state, singleUser: action.user};
-    case DELETE_USER:
-      return {...state, allUsers: allUsers.filter(user => user !== action.user)};
+      return {...action.user};
     default:
       return state;
   }
